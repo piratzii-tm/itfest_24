@@ -40,6 +40,21 @@ export const Typographies = {
     lineHeight: 18,
     fontFamily: "DMSans-Regular",
   },
+  achivementTitle: {
+    fontSize: 20,
+    lineHeight: 26,
+    fontFamily: "DMSans-Bold",
+  },
+  achivementSubTitle: {
+    fontSize: 16,
+    lineHeight: 20,
+    fontFamily: "DMSans-Regular",
+  },
+  priceText: {
+    fontSize: 24,
+    lineHeight: 31,
+    fontFamily: "DMSans-Regular",
+  },
 };
 
 export const configTheme = () => {
