@@ -23,6 +23,7 @@ export const Colors = {
   quikSand: "#BC9C85",
   goldenrod: "#FFCD73",
   starkWhite: "#E7DDC5",
+  transparent: "transparent",
 };
 
 export const Typographies = {
