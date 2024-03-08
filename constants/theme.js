@@ -55,6 +55,11 @@ export const Typographies = {
     lineHeight: 31,
     fontFamily: "DMSans-Regular",
   },
+  recycleCard: {
+    fontSize: 42,
+    lineHeight: 54,
+    fontFamily: "DMSans-Bold",
+  },
 };
 
 export const configTheme = () => {
