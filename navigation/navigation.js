@@ -29,6 +29,7 @@ const AppStack = () => {
     <Stack.Navigator screenOptions={{ headerShown: false }}>
       <Stack.Screen name={"Tabs"} component={Tabs} />
       <Stack.Screen name={"Collections"} component={CollectionsScreen} />
+      <Stack.Screen name={"AfterScan"} component={AfterScanScreen} />
     </Stack.Navigator>
   );
 };

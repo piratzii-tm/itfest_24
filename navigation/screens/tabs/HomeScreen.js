@@ -1,6 +1,5 @@
 import { View, Text } from "react-native-ui-lib";
 import KSpacer from "../../../components/KSpacer";
-
 const HomeScreen = () => {
   return (
     <View>

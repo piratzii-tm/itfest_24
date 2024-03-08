@@ -1,0 +1,1 @@
+const AfterScanScreen = ({ navigation, route }) => {};
