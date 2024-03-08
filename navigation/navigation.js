@@ -10,6 +10,7 @@ import RegisterScreen from "./screens/auth/RegisterScreen";
 import { useEffect, useState } from "react";
 import { onAuthStateChanged } from "firebase/auth";
 import { auth } from "../firebase/config";
+import AfterScanScreen from "./screens/AfterScanScreen";
 
 const Stack = createNativeStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -29,6 +30,7 @@ const AppStack = () => {
     <Stack.Navigator screenOptions={{ headerShown: false }}>
       <Stack.Screen name={"Tabs"} component={Tabs} />
       <Stack.Screen name={"Collections"} component={CollectionsScreen} />
+      <Stack.Screen name={"AfterScan"} component={AfterScanScreen} />
     </Stack.Navigator>
   );
 };
