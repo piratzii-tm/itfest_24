@@ -7,7 +7,9 @@ import CollectionsScreen from "./screens/CollectionsScreen";
 import { NavigationContainer } from "@react-navigation/native";
 import LoginScreen from "./screens/auth/LoginScreen";
 import RegisterScreen from "./screens/auth/RegisterScreen";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { onAuthStateChanged } from "firebase/auth";
+import { auth } from "../firebase/config";
 
 const Stack = createNativeStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -42,6 +44,17 @@ const AuthStack = () => {
 
 const Navigation = () => {
   const [isLogged, setIsLogged] = useState(true);
+
+  useEffect(() => {
+    onAuthStateChanged(auth, (user) => {
+      if (user) {
+        setIsLogged(true);
+      } else {
+        setIsLogged(false);
+      }
+    });
+  }, []);
+
   return (
     <NavigationContainer>
       {isLogged && <AppStack />}
