@@ -3,6 +3,7 @@ import { ImageBackground, StyleSheet, useWindowDimensions } from "react-native";
 import { Colors } from "../constants/theme";
 import { LinearGradient } from "expo-linear-gradient";
 import KSpacer from "./KSpacer";
+import { KCoin } from "./KCoin";
 
 export const KAchivements = ({
   photoRequire,
@@ -48,16 +49,8 @@ export const KAchivements = ({
         }
       />
       {type === "locked" ? (
-        <View absR row center padding-10>
-          <Text center priceText webOrange>
-            {price}
-          </Text>
-          <View width={2}></View>
-          <Image
-            height={26}
-            width={26}
-            source={require("../assets/images/coins.png")}
-          />
+        <View absR center padding-10>
+          <KCoin price={price} />
         </View>
       ) : (
         <View></View>
