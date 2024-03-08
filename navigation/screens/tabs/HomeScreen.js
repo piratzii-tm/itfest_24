@@ -1,11 +1,10 @@
-import { View, Text } from "react-native-ui-lib";
-import KSpacer from "../../../components/KSpacer";
+import { Text } from "react-native-ui-lib";
+import KContainer from "../../../components/KContainer";
 const HomeScreen = () => {
   return (
-    <View>
-      <KSpacer height={50} />
+    <KContainer type={0}>
       <Text dmSansBold>Home</Text>
-    </View>
+    </KContainer>
   );
 };
 

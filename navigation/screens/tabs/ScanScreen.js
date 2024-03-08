@@ -10,7 +10,6 @@ const ScanScreen = ({ navigation }) => {
   const [cameraRef, setCameraRef] = useState(null);
   const [isProcessing, setIsProcessing] = useState(false);
   const { width: windowWidth, height: windowHeight } = useWindowDimensions();
-  const [processingResponse, setProcessingResponse] = useState([]);
 
   if (!permission) {
     return <View />;
@@ -31,8 +30,8 @@ const ScanScreen = ({ navigation }) => {
     cameraRef.takePictureAsync().then((response) => {
       setIsProcessing(true);
       handleImageProcessing({ uri: response.uri }).then((response) => {
-        setProcessingResponse(response);
         setIsProcessing(false);
+        navigation.navigate("AfterScan", { response: response });
       });
     });
   };

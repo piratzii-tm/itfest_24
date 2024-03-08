@@ -25,5 +25,6 @@ export const handleImageRecognition = async ({ url }) => {
       },
     ],
   });
-  return response.choices[0].message;
+  console.log(response.choices[0].message.content);
+  return response.choices[0].message.content;
 };

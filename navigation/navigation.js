@@ -10,6 +10,7 @@ import RegisterScreen from "./screens/auth/RegisterScreen";
 import { useEffect, useState } from "react";
 import { onAuthStateChanged } from "firebase/auth";
 import { auth } from "../firebase/config";
+import AfterScanScreen from "./screens/AfterScanScreen";
 
 const Stack = createNativeStackNavigator();
 const Tab = createBottomTabNavigator();

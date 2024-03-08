@@ -23,11 +23,37 @@ export const Colors = {
   quikSand: "#BC9C85",
   goldenrod: "#FFCD73",
   starkWhite: "#E7DDC5",
+  transparent: "transparent",
 };
 
 export const Typographies = {
   dmSansBold: {
     fontFamily: "DMSans-Bold",
+  },
+  title: {
+    fontSize: 48,
+    lineHeight: 62,
+    fontFamily: "DMSans-Bold",
+  },
+  subTitle: {
+    fontSize: 14,
+    lineHeight: 18,
+    fontFamily: "DMSans-Regular",
+  },
+  achivementTitle: {
+    fontSize: 20,
+    lineHeight: 26,
+    fontFamily: "DMSans-Bold",
+  },
+  achivementSubTitle: {
+    fontSize: 16,
+    lineHeight: 20,
+    fontFamily: "DMSans-Regular",
+  },
+  priceText: {
+    fontSize: 24,
+    lineHeight: 31,
+    fontFamily: "DMSans-Regular",
   },
 };
 
