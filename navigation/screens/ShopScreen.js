@@ -2,7 +2,6 @@ import KContainer from "../../components/KContainer";
 import { Text, View } from "react-native-ui-lib";
 import KShopCard from "../../components/KShopCard";
 import KSpacer from "../../components/KSpacer";
-import { KHeading } from "../../components/KHeading";
 import { KBackButtonHeader } from "../../components/KBackButtonHeader";
 import { useWindowDimensions } from "react-native";
 import { onValue, ref } from "firebase/database";
