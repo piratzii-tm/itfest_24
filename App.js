@@ -3,31 +3,27 @@ import Navigation from "./navigation/navigation";
 import { configTheme } from "./constants/theme";
 import { useEffect, useState } from "react";
 import { TimerContext } from "./constants/contexts/timerContext";
-import { Alert } from "react-native";
-import { useNavigation } from "@react-navigation/native";
+import { challanges } from "./data/challanges";
 
 configTheme();
 
 export default function App() {
-  const [isTimerActive, setIsTimerActive] = useState(false);
+  const [startTimeStamp, setStartTimeStamp] = useState(Date.now());
   const [duration, setDuration] = useState(60);
   const [scans, setScans] = useState(0);
+  const [isActiveChallenge, setIsActiveChallenge] = useState(false);
 
-  useEffect(() => {
-    const intervalH = setInterval(() => {
-      setIsTimerActive(false);
-      clearInterval(intervalH);
-    }, duration * 1000);
-  }, [isTimerActive]);
   return (
     <TimerContext.Provider
       value={{
-        isTimerActive,
-        setIsTimerActive,
+        startTimeStamp,
+        setStartTimeStamp,
         duration,
         setDuration,
         scans,
         setScans,
+        isActiveChallenge,
+        setIsActiveChallenge,
       }}
     >
       <WithExpoFonts>

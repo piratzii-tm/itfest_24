@@ -12,7 +12,7 @@ const AfterScanScreen = ({ navigation, route }) => {
   const [isRecycable, setIsRecycable] = useState(false);
   const [objectType, setObjectType] = useState("trash");
   const { width: windowWidth, height: windowHeight } = useWindowDimensions();
-  const { isTimerActive, scans, setScans } = useContext(TimerContext);
+  const { isActiveChallenge, setScans } = useContext(TimerContext);
 
   useEffect(() => {
     const response = route.params.response.split(" ");
@@ -24,7 +24,7 @@ const AfterScanScreen = ({ navigation, route }) => {
           !response[0].toLowerCase().includes("no")))
     ) {
       setIsRecycable(true);
-      if (isTimerActive) {
+      if (isActiveChallenge) {
         setScans((prev) => prev + 1);
       }
     }

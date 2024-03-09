@@ -12,18 +12,30 @@ import { updateAwardsPoints } from "../../firebase/updateAwardsPoints";
 
 const BeforeStartingChallangeScreen = ({ navigation, route }) => {
   const [finishedScans, setFinishedScans] = useState(0);
-  const { isTimerActive, setIsTimerActive, duration, scans, setScans } =
-    useContext(TimerContext);
+  const {
+    duration,
+    scans,
+    setScans,
+    isActiveChallenge,
+    startTimeStamp,
+    setStartTimeStamp,
+    setIsActiveChallenge,
+  } = useContext(TimerContext);
   const [challange, setChallange] = useState({});
   useEffect(() => {
     setChallange(route.params.challange);
-
-    if (scans !== 0 && !isTimerActive) {
+    console.log((Date.now() - startTimeStamp) / 1000);
+    if ((Date.now() - startTimeStamp) / 1000 >= duration || scans >= 3) {
+      setIsActiveChallenge(false);
       setFinishedScans(scans);
-      if (scans > route.params.challange.minimumScans) {
-        updateAwardsPoints(route.params.challange.prize - scans);
+      if (scans >= route.params.challange.minimumScans) {
+        updateAwardsPoints({
+          points: route.params.challange.prize - scans,
+        }).then(() => console.log("Successfully completed the challenge"));
       }
-      setScans(0);
+      if ((Date.now() - startTimeStamp) / 1000 >= duration) {
+        setScans(0);
+      }
     }
   }, []);
 
@@ -41,6 +53,8 @@ const BeforeStartingChallangeScreen = ({ navigation, route }) => {
             {challange.title}
           </Text>
           <KSpacer height={50} />
+
+          {/*handle the before challenge*/}
           {finishedScans === 0 && (
             <>
               <View paddingH-10>
@@ -61,7 +75,7 @@ const BeforeStartingChallangeScreen = ({ navigation, route }) => {
                   {challange.description}
                 </Text>
                 <KSpacer height={30} />
-                {!isTimerActive && (
+                {!isActiveChallenge && (
                   <>
                     <Text
                       challangeCardTitle
@@ -73,7 +87,7 @@ const BeforeStartingChallangeScreen = ({ navigation, route }) => {
                     </Text>
                     <KSpacer />
                     <View flex left>
-                      {!isTimerActive &&
+                      {!isActiveChallenge &&
                         challange.instructions.map((instruction) => (
                           <Text
                             saltpan
@@ -105,7 +119,7 @@ const BeforeStartingChallangeScreen = ({ navigation, route }) => {
                 </View>
               </View>
               <KSpacer height={30} />
-              {isTimerActive && (
+              {isActiveChallenge && (
                 <>
                   <View paddingH-10>
                     <Text
@@ -121,10 +135,17 @@ const BeforeStartingChallangeScreen = ({ navigation, route }) => {
 
                   <View flex center>
                     <CountdownCircleTimer
-                      isPlaying={isTimerActive}
-                      //TODO should start from the last duration before the screen exist
+                      isPlaying={isActiveChallenge}
+                      initialRemainingTime={
+                        duration - (Date.now() - startTimeStamp) / 1000
+                      }
                       duration={duration}
                       colors={[Colors.tundora]}
+                      onUpdate={(remainingTime) => {
+                        if (remainingTime === 0) {
+                          setIsActiveChallenge(false);
+                        }
+                      }}
                     >
                       {({ remainingTime }) => (
                         <Text challangeCardTitle white>
@@ -137,7 +158,7 @@ const BeforeStartingChallangeScreen = ({ navigation, route }) => {
               )}
               <KSpacer height={30} />
 
-              {!isTimerActive && (
+              {!isActiveChallenge && (
                 <View flex center>
                   <TouchableOpacity
                     style={{
@@ -148,7 +169,8 @@ const BeforeStartingChallangeScreen = ({ navigation, route }) => {
                       borderRadius: 20,
                     }}
                     onPress={() => {
-                      setIsTimerActive(true);
+                      setStartTimeStamp(Date.now());
+                      setIsActiveChallenge(true);
                     }}
                   >
                     <Text challangeCardTitle quikSand>
@@ -160,6 +182,7 @@ const BeforeStartingChallangeScreen = ({ navigation, route }) => {
             </>
           )}
 
+          {/*handle the after challenge*/}
           {finishedScans !== 0 && (
             <>
               {challange.minimumScans <= finishedScans && (
