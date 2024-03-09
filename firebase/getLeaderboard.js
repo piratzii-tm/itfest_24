@@ -8,11 +8,18 @@ export const getLeaderboard = () => {
       .map((elem, index) => {
         return {
           uid: Object.keys(snapshots.val())[index],
-          index,
-          username: elem.username,
+          name: elem.username,
           coins: elem.totalPoints,
         };
       })
-      .sort((el1, el2) => el2.coins - el1.coins);
+      .sort((el1, el2) => el2.coins - el1.coins)
+      .map((elem, index) => {
+        return {
+          uid: elem.uid,
+          index: index + 1,
+          name: elem.name,
+          coins: elem.coins,
+        };
+      });
   });
 };

@@ -25,23 +25,9 @@ const HomeScreen = ({ navigation }) => {
 
   const [currentTime, setCurrentTime] = useState(Date.now());
   const [userData, setUserData] = useState({});
-  const [leaderBoard, setLeaderBoard] = useState([]);
 
   useEffect(() => {
     if (auth.currentUser) {
-      getLeaderboard().then((list) => {
-        if (list.length <= 10) {
-          setLeaderBoard(list);
-        } else {
-          setLeaderBoard(list.slice(0, 9));
-          if (!leaderBoard.map((el) => el.id).includes(auth.currentUser.uid)) {
-            setLeaderBoard((prev) => [
-              ...prev,
-              leaderBoard.filter((el) => el.id === auth.currentUser.uid)[0],
-            ]);
-          }
-        }
-      });
       const userRef = ref(database, "users/" + auth.currentUser.uid);
       onValue(userRef, (snapshot) => {
         if (snapshot.exists()) {
