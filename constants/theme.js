@@ -80,6 +80,11 @@ export const Typographies = {
     lineHeight: 26,
     fontFamily: "DMSans-Regular",
   },
+  counter: {
+    fontSize: 42,
+    lineHeight: 54,
+    fontFamily: "DMSans-Regular",
+  },
 };
 
 export const configTheme = () => {
