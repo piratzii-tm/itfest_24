@@ -53,18 +53,19 @@ export const handleImageProcessing = async ({ uri }) => {
     if (aux["plasticObjects"] >= 1 && !aux["rewardsIDs"].includes(0)) {
       aux["rewardsIDs"].push(0);
       aux["totalPoints"] += 1;
-
+      aux["achievementPoints"] += 1;
       Alert.alert("Congrats! New award received! 🥳", "Bottoms up!");
     }
     if (aux["paperObjects"] >= 1 && !aux["rewardsIDs"].includes(2)) {
       aux["rewardsIDs"].push(2);
       aux["totalPoints"] += 1;
+      aux["achievementPoints"] += 1;
       Alert.alert("Congrats! New award received! 🥳", "Rock paper and PAPER!");
     }
     if (aux["aluminumObjects"] >= 1 && !aux["rewardsIDs"].includes(1)) {
       aux["rewardsIDs"].push(1);
       aux["totalPoints"] += 1;
-
+      aux["achievementPoints"] += 1;
       Alert.alert("Congrats! New award received! 🥳", "Aluminium starter!");
     }
     if (
@@ -75,6 +76,7 @@ export const handleImageProcessing = async ({ uri }) => {
     ) {
       aux["rewardsIDs"].push(3);
       aux["totalPoints"] += 3;
+      aux["achievementPoints"] += 3;
       Alert.alert("Congrats! New award received! 🥳", "The recycler!");
     }
     if (
@@ -85,6 +87,7 @@ export const handleImageProcessing = async ({ uri }) => {
     ) {
       aux["rewardsIDs"].push(4);
       aux["totalPoints"] += 5;
+      aux["achievementPoints"] += 5;
       Alert.alert("Congrats! New award received! 🥳", "That’s a collection.");
     }
 

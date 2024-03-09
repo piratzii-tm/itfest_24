@@ -13,7 +13,7 @@ export const KStats = ({ type = 0, coins = 0 }) => {
       style={{ borderRadius: 10, justifyContent: "space-evenly" }}
       bg-sprout
     >
-      <View>
+      <View center>
         <Text counter webOrange>
           {coins}
         </Text>
