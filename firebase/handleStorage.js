@@ -62,14 +62,14 @@ export const handleImageProcessing = async ({ uri }) => {
       aux["achievementPoints"] += 1;
       Alert.alert("Congrats! New award received! 🥳", "Rock paper and PAPER!");
     }
-    if (aux["aluminumObjects"] >= 1 && !aux["rewardsIDs"].includes(1)) {
+    if (aux["aluminiumObjects"] >= 1 && !aux["rewardsIDs"].includes(1)) {
       aux["rewardsIDs"].push(1);
       aux["totalPoints"] += 1;
       aux["achievementPoints"] += 1;
       Alert.alert("Congrats! New award received! 🥳", "Aluminium starter!");
     }
     if (
-      aux["aluminumObjects"] >= 1 &&
+      aux["aluminiumObjects"] >= 1 &&
       aux["paperObjects"] >= 1 &&
       aux["plasticObjects"] >= 1 &&
       !aux["rewardsIDs"].includes(3)
@@ -80,7 +80,7 @@ export const handleImageProcessing = async ({ uri }) => {
       Alert.alert("Congrats! New award received! 🥳", "The recycler!");
     }
     if (
-      aux["aluminumObjects"] >= 5 &&
+      aux["aluminiumObjects"] >= 5 &&
       aux["paperObjects"] >= 5 &&
       aux["plasticObjects"] >= 5 &&
       !aux["rewardsIDs"].includes(4)

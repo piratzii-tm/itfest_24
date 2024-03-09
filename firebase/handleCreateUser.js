@@ -9,7 +9,7 @@ export const handleCreateUser = ({ username, mail }) => {
     totalPoints: 0,
     plasticObjects: 0,
     paperObjects: 0,
-    aluminumObjects: 0,
+    aluminiumObjects: 0,
     achievementPoints: 0,
     rewardsIDs: [-1],
   };
