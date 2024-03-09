@@ -89,6 +89,16 @@ export const Typographies = {
     fontSize: 22,
     fontFamily: "DMSans-Bold",
   },
+  collectionTitle: {
+    fontSize: 32,
+    lineHeight: 41,
+    fontFamily: "DMSans-Bold",
+  },
+  collectionSubTitle: {
+    fontSize: 14,
+    lineHeight: 18,
+    fontFamily: "DMSans-Regular",
+  },
 };
 
 export const configTheme = () => {
