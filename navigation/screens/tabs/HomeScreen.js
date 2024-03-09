@@ -12,6 +12,7 @@ import { ScrollView } from "react-native";
 import { awards } from "../../../data/awards";
 import { KAchivements } from "../../../components/KAchivements";
 import { KCollectionDisplay } from "../../../components/KCollectionDisplay";
+import { KHomeHeader } from "../../../components/KHomeHeader";
 const HomeScreen = ({ navigation }) => {
   const {
     isActiveChallenge,
@@ -51,8 +52,9 @@ const HomeScreen = ({ navigation }) => {
 
   return (
     <KContainer type={1}>
+      <KHomeHeader />
       <View style={{ paddingBottom: 120 }}>
-        <View>
+        <View paddingH-30>
           <KHeading
             title={"Awards."}
             subTitle={"Your achievements as recycler."}
