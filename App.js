@@ -12,6 +12,7 @@ export default function App() {
   const [duration, setDuration] = useState(60);
   const [scans, setScans] = useState(0);
   const [isActiveChallenge, setIsActiveChallenge] = useState(false);
+  const [initChallenge, setInitChallenge] = useState(false);
 
   return (
     <TimerContext.Provider
@@ -24,6 +25,8 @@ export default function App() {
         setScans,
         isActiveChallenge,
         setIsActiveChallenge,
+        initChallenge,
+        setInitChallenge,
       }}
     >
       <WithExpoFonts>
