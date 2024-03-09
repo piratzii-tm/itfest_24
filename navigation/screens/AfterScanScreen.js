@@ -10,10 +10,11 @@ const AfterScanScreen = ({ navigation, route }) => {
     const response = route.params.response.split(" ");
     console.log(response);
     if (
-      response[0].toLowerCase() === "yes" ||
-      response[0].toLowerCase() === "recyclable" ||
-      response[0].toLowerCase().contains("yes") ||
-      response[0].toLowerCase().contains("recyclable")
+      response[0].toLowerCase().length >= 3 &&
+      (response[0].toLowerCase() === "yes" ||
+        response[0].toLowerCase() === "recyclable" ||
+        response[0].toLowerCase().contains("yes") ||
+        response[0].toLowerCase().contains("recyclable"))
     ) {
       setIsRecycable(true);
     }

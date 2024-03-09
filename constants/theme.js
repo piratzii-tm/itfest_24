@@ -23,6 +23,7 @@ export const Colors = {
   quikSand: "#BC9C85",
   goldenrod: "#FFCD73",
   starkWhite: "#E7DDC5",
+  black: "#000000",
   transparent: "transparent",
 };
 
@@ -54,6 +55,15 @@ export const Typographies = {
     fontSize: 24,
     lineHeight: 31,
     fontFamily: "DMSans-Regular",
+  },
+
+  authLabel: {
+    fontSize: 26,
+    fontFamily: "DMSans-Regular",
+  },
+  tabBarText: {
+    fontSize: 14,
+    fontFamily: "DMSans-Bold",
   },
   recycleCard: {
     fontSize: 42,

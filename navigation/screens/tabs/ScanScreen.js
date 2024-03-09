@@ -38,7 +38,7 @@ const ScanScreen = ({ navigation }) => {
 
   return (
     <Camera
-      style={{ flex: 1, justifyContent: "center" }}
+      style={{ flex: 1, justifyContent: "center", paddingBottom: 95 }}
       type={CameraType.back}
       ref={(ref) => setCameraRef(ref)}
     >
@@ -68,6 +68,7 @@ const ScanScreen = ({ navigation }) => {
         }}
       >
         <TouchableOpacity
+          disabled={isProcessing}
           onPress={onPressScan}
           style={{
             padding: 10,
