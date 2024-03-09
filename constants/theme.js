@@ -85,6 +85,10 @@ export const Typographies = {
     lineHeight: 54,
     fontFamily: "DMSans-Regular",
   },
+  logoutText: {
+    fontSize: 22,
+    fontFamily: "DMSans-Bold",
+  },
 };
 
 export const configTheme = () => {
