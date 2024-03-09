@@ -60,6 +60,16 @@ export const Typographies = {
     lineHeight: 54,
     fontFamily: "DMSans-Bold",
   },
+  challangeCardTitle: {
+    fontSize: 32,
+    lineHeight: 41,
+    fontFamily: "DMSans-Medium",
+  },
+  challangeCardSubTitle: {
+    fontSize: 20,
+    lineHeight: 26,
+    fontFamily: "DMSans-Regular",
+  },
 };
 
 export const configTheme = () => {
