@@ -19,8 +19,8 @@ import { FontAwesomeIcon } from "@fortawesome/react-native-fontawesome";
 import { Text } from "react-native-ui-lib";
 import ChallengeScreen from "./screens/ChallengeScreen";
 import { LeaderBoardScreen } from "./screens/LeaderBoardScreen";
-import { ShopScreen } from "./screens/ShopScreen";
 import { StatsScreen } from "./screens/StatsScreen";
+import ShopScreen from "./screens/ShopScreen";
 
 const Stack = createNativeStackNavigator();
 const Tab = createBottomTabNavigator();
