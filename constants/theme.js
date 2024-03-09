@@ -24,6 +24,9 @@ export const Colors = {
   goldenrod: "#FFCD73",
   starkWhite: "#E7DDC5",
   black: "#000000",
+  gold: "#FFD700",
+  silver: "#C0C0C0",
+  bronze: "#CD7F32",
   transparent: "transparent",
 };
 
