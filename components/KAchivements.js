@@ -21,7 +21,7 @@ export const KAchivements = ({
       imageStyle={{ borderRadius: 10 }}
       style={{
         height: 180,
-        width: type === "large" ? width * 0.9 : 180,
+        width: type === "large" ? width * 0.75 : 180,
       }}
     >
       <LinearGradient
