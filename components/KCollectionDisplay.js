@@ -14,7 +14,7 @@ export const KCollectionDisplay = ({ type = "bottle", count = 0, onPress }) => {
         style={{ borderRadius: 10 }}
       >
         <Text challangeCardTitle royalBlue>
-          Bottle.
+          Plastic.
         </Text>
         <View center gap-10>
           <Image
@@ -39,7 +39,7 @@ export const KCollectionDisplay = ({ type = "bottle", count = 0, onPress }) => {
         style={{ borderRadius: 10 }}
       >
         <Text challangeCardTitle sushi>
-          Can.
+          Alum.
         </Text>
         <View center gap-10>
           <Image
@@ -64,7 +64,7 @@ export const KCollectionDisplay = ({ type = "bottle", count = 0, onPress }) => {
         style={{ borderRadius: 10 }}
       >
         <Text challangeCardTitle goldenrod>
-          Boxes.
+          Paper.
         </Text>
         <View center gap-10>
           <Image
