@@ -52,7 +52,7 @@ const HomeScreen = ({ navigation }) => {
 
   return (
     <KContainer type={1}>
-      <KHomeHeader />
+      <KHomeHeader navigation={navigation} />
       <View style={{ paddingBottom: 120 }}>
         <View paddingH-30>
           <KHeading
