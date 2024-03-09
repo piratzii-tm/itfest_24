@@ -25,12 +25,14 @@ const HomeScreen = ({ navigation }) => {
   const [userData, setUserData] = useState({});
 
   useEffect(() => {
-    const userRef = ref(database, "users/" + auth.currentUser.uid);
-    onValue(userRef, (snapshot) => {
-      if (snapshot.exists()) {
-        setUserData(snapshot.val());
-      }
-    });
+    if (auth.currentUser) {
+      const userRef = ref(database, "users/" + auth.currentUser.uid);
+      onValue(userRef, (snapshot) => {
+        if (snapshot.exists()) {
+          setUserData(snapshot.val());
+        }
+      });
+    }
   }, []);
 
   useEffect(() => {
@@ -49,18 +51,22 @@ const HomeScreen = ({ navigation }) => {
 
   return (
     <KContainer type={1}>
-      <View paddingH-30 style={{ paddingBottom: 120 }}>
-        <KHeading
-          title={"Awards."}
-          subTitle={"Your achievements as recycler."}
-        />
+      <View style={{ paddingBottom: 120 }}>
+        <View>
+          <KHeading
+            title={"Awards."}
+            subTitle={"Your achievements as recycler."}
+          />
+        </View>
         <KSpacer />
         <ScrollView horizontal showsHorizontalScrollIndicator={false}>
-          {userData.rewardsIDs !== undefined &&
+          {userData != null &&
+            userData.rewardsIDs !== undefined &&
             userData.rewardsIDs.map(
               (id) =>
                 id !== -1 && (
                   <>
+                    <View width={5}></View>
                     <KAchivements
                       key={id}
                       photoRequire={awards[id].photo}
@@ -68,16 +74,18 @@ const HomeScreen = ({ navigation }) => {
                       subTitle={awards[id].description}
                       type={"large"}
                     />
-                    <View width={10}></View>
+                    <View width={5}></View>
                   </>
                 ),
             )}
         </ScrollView>
         <KSpacer height={50} />
-        <KHeading
-          title={"Challenges."}
-          subTitle={"Complete challenges and earn more coins."}
-        />
+        <View paddingH-30>
+          <KHeading
+            title={"Challenges."}
+            subTitle={"Complete challenges and earn more coins."}
+          />
+        </View>
         <KSpacer height={20} />
         <View center>
           <KChallange
@@ -91,14 +99,17 @@ const HomeScreen = ({ navigation }) => {
           />
         </View>
         <KSpacer height={50} />
-
-        <KHeading
-          title={"Collections."}
-          subTitle={"Your collected items in one place."}
-        />
+        <View paddingH-30>
+          <KHeading
+            title={"Collections."}
+            subTitle={"Your collected items in one place."}
+          />
+        </View>
         <KSpacer />
         <ScrollView horizontal showsHorizontalScrollIndicator={false}>
+          <View width={5}></View>
           <KCollectionDisplay
+            key={1}
             count={userData["plasticObjects"]}
             onPress={() => {
               //TODO handle navgation
@@ -106,6 +117,7 @@ const HomeScreen = ({ navigation }) => {
           />
           <View width={10}></View>
           <KCollectionDisplay
+            key={2}
             type={"paper"}
             count={userData["paperObjects"]}
             onPress={() => {
@@ -114,6 +126,7 @@ const HomeScreen = ({ navigation }) => {
           />
           <View width={10}></View>
           <KCollectionDisplay
+            key={3}
             type={"can"}
             count={userData["aluminiumObjects"]}
             onPress={() => {
