@@ -13,6 +13,7 @@ import { faRightFromBracket } from "@fortawesome/free-solid-svg-icons/faRightFro
 import { FontAwesomeIcon } from "@fortawesome/react-native-fontawesome";
 import { Colors } from "../../../constants/theme";
 import { KStats } from "../../../components/KStats";
+import { onShare } from "../../../constants/helpers/share";
 
 const ProfileScreen = () => {
   const [userData, setUserData] = useState({});
@@ -58,18 +59,28 @@ const ProfileScreen = () => {
 
           <View row style={{ flexWrap: "wrap" }} center gap-10>
             {awards.map((award) => (
-              <KAchivements
-                key={award.title}
-                price={award.coins}
-                photoRequire={award.photo}
-                title={award.title}
-                subTitle={award.description}
-                type={
-                  userData.rewardsIDs.includes(awards.indexOf(award))
-                    ? "small"
-                    : "locked"
+              <TouchableOpacity
+                disabled={!userData.rewardsIDs.includes(awards.indexOf(award))}
+                onLongPress={() =>
+                  onShare({
+                    rewardTitle: award.title,
+                    rewardDescription: award.description,
+                  })
                 }
-              />
+              >
+                <KAchivements
+                  key={award.title}
+                  price={award.coins}
+                  photoRequire={award.photo}
+                  title={award.title}
+                  subTitle={award.description}
+                  type={
+                    userData.rewardsIDs.includes(awards.indexOf(award))
+                      ? "small"
+                      : "locked"
+                  }
+                />
+              </TouchableOpacity>
             ))}
           </View>
           <KSpacer height={30} />

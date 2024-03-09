@@ -44,14 +44,17 @@ export const handleImageProcessing = async ({ uri }) => {
     const userGet = await get(
       child(dbRef(database), "users/" + auth.currentUser.uid),
     );
+    const globalGet = await get(child(dbRef(database), "global/"));
 
     let aux = userGet.val();
+    let globalAux = globalGet.val();
 
     aux["images"][`${folderName}`].push(imageName);
 
     aux["totalPoints"] += 1 * aux["multiplier"];
     aux["purchasablePoint"] += 1 * aux["multiplier"];
     aux[`${folderName}Objects`] += 1;
+    globalAux[`${folderName}`] += 1;
 
     if (aux["plasticObjects"] >= 1 && !aux["rewardsIDs"].includes(0)) {
       aux["rewardsIDs"].push(0);
@@ -100,7 +103,9 @@ export const handleImageProcessing = async ({ uri }) => {
     }
 
     const userUpdate = dbRef(database, `users/${auth.currentUser.uid}`);
+    const globalUpdate = dbRef(database, "global/");
     set(userUpdate, aux).then(() => console.log("Update with success"));
+    set(globalUpdate, globalAux).then(() => console.log("Update with success"));
   }
   return response;
 };
