@@ -8,12 +8,13 @@ import { TimerContext } from "../../../constants/contexts/timerContext";
 import { challanges } from "../../../data/challanges";
 import { onValue, ref } from "firebase/database";
 import { auth, database } from "../../../firebase/config";
-import { ScrollView } from "react-native";
+import { ScrollView, TouchableOpacity } from "react-native";
 import { awards } from "../../../data/awards";
 import { KAchivements } from "../../../components/KAchivements";
 import { KCollectionDisplay } from "../../../components/KCollectionDisplay";
 import { KHomeHeader } from "../../../components/KHomeHeader";
 import { getLeaderboard } from "../../../firebase/getLeaderboard";
+import { onShare } from "../../../constants/helpers/share";
 const HomeScreen = ({ navigation }) => {
   const {
     isActiveChallenge,
@@ -70,13 +71,22 @@ const HomeScreen = ({ navigation }) => {
                 id !== -1 && (
                   <>
                     <View width={5}></View>
-                    <KAchivements
-                      key={id}
-                      photoRequire={awards[id].photo}
-                      title={awards[id].title}
-                      subTitle={awards[id].description}
-                      type={"large"}
-                    />
+                    <TouchableOpacity
+                      onLongPress={() =>
+                        onShare({
+                          rewardTitle: awards[id].title,
+                          rewardDescription: awards[id].description,
+                        })
+                      }
+                    >
+                      <KAchivements
+                        key={id}
+                        photoRequire={awards[id].photo}
+                        title={awards[id].title}
+                        subTitle={awards[id].description}
+                        type={"large"}
+                      />
+                    </TouchableOpacity>
                     <View width={5}></View>
                   </>
                 ),
