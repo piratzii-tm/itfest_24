@@ -17,7 +17,7 @@ export const KLeaderBoard = ({ leaderBoard }) => {
         bg-saltpan
         padding-10
         style={
-          element.index === 1
+          leaderBoard.indexOf(element) === 0
             ? {
                 borderColor: Colors.olivine,
                 borderTopLeftRadius: 10,
