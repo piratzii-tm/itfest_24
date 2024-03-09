@@ -1,4 +1,4 @@
-import { Text, View } from "react-native-ui-lib";
+import { View } from "react-native-ui-lib";
 import KContainer from "../../../components/KContainer";
 import { KHeading } from "../../../components/KHeading";
 import { KChallange } from "../../../components/KChallange";
@@ -111,27 +111,27 @@ const HomeScreen = ({ navigation }) => {
           <KCollectionDisplay
             key={1}
             count={userData["plasticObjects"]}
-            onPress={() => {
-              //TODO handle navgation
-            }}
+            onPress={() =>
+              navigation.navigate("Collections", { type: "plastic" })
+            }
           />
           <View width={10}></View>
           <KCollectionDisplay
             key={2}
             type={"paper"}
             count={userData["paperObjects"]}
-            onPress={() => {
-              //TODO handle navgation
-            }}
+            onPress={() =>
+              navigation.navigate("Collections", { type: "paper" })
+            }
           />
           <View width={10}></View>
           <KCollectionDisplay
             key={3}
             type={"can"}
             count={userData["aluminiumObjects"]}
-            onPress={() => {
-              //TODO handle navgation
-            }}
+            onPress={() =>
+              navigation.navigate("Collections", { type: "aluminium" })
+            }
           />
         </ScrollView>
       </View>
