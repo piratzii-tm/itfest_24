@@ -10,7 +10,7 @@ import { Colors } from "../../constants/theme";
 import { CountdownCircleTimer } from "react-native-countdown-circle-timer";
 import { updateAwardsPoints } from "../../firebase/updateAwardsPoints";
 
-const BeforeStartingChallangeScreen = ({ navigation, route }) => {
+const ChallengeScreen = ({ navigation, route }) => {
   const [finishedScans, setFinishedScans] = useState(0);
   const {
     duration,
@@ -20,11 +20,12 @@ const BeforeStartingChallangeScreen = ({ navigation, route }) => {
     startTimeStamp,
     setStartTimeStamp,
     setIsActiveChallenge,
+    setInitChallenge,
   } = useContext(TimerContext);
   const [challange, setChallange] = useState({});
   useEffect(() => {
     setChallange(route.params.challange);
-    console.log((Date.now() - startTimeStamp) / 1000);
+    console.log("screen", (Date.now() - startTimeStamp) / 1000);
     if ((Date.now() - startTimeStamp) / 1000 >= duration) {
       setIsActiveChallenge(false);
       setFinishedScans(scans);
@@ -171,6 +172,7 @@ const BeforeStartingChallangeScreen = ({ navigation, route }) => {
                     onPress={() => {
                       setStartTimeStamp(Date.now());
                       setIsActiveChallenge(true);
+                      setInitChallenge(true);
                     }}
                   >
                     <Text challangeCardTitle quikSand>
@@ -224,4 +226,4 @@ const BeforeStartingChallangeScreen = ({ navigation, route }) => {
   );
 };
 
-export default BeforeStartingChallangeScreen;
+export default ChallengeScreen;

@@ -12,8 +12,7 @@ const HomeScreen = ({ navigation }) => {
     startTimeStamp,
     duration,
     setIsActiveChallenge,
-    scans,
-    setScans,
+    initChallenge,
   } = useContext(TimerContext);
 
   const [currentTime, setCurrentTime] = useState(Date.now());
@@ -26,7 +25,9 @@ const HomeScreen = ({ navigation }) => {
   }, []);
 
   useEffect(() => {
-    setIsActiveChallenge((currentTime - startTimeStamp) / 1000 < duration);
+    if (initChallenge) {
+      setIsActiveChallenge((currentTime - startTimeStamp) / 1000 < duration);
+    }
   }, [startTimeStamp, duration, currentTime]);
 
   return (
@@ -42,7 +43,7 @@ const HomeScreen = ({ navigation }) => {
             requirement={!isActiveChallenge ? challanges[0].description : ""}
             price={challanges[0].prize}
             onPress={() =>
-              navigation.navigate("BeforeStarting", {
+              navigation.navigate("ChallengeScreen", {
                 challange: challanges[0],
               })
             }
