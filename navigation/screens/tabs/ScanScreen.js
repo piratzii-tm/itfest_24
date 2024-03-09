@@ -17,7 +17,7 @@ const ScanScreen = ({ navigation }) => {
 
   if (!permission.granted) {
     return (
-      <View style={styles.container}>
+      <View style={{ flex: 1, justifyContent: "center" }}>
         <Text style={{ textAlign: "center" }}>
           We need your permission to show the camera
         </Text>

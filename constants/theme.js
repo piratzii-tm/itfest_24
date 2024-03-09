@@ -56,6 +56,7 @@ export const Typographies = {
     lineHeight: 31,
     fontFamily: "DMSans-Regular",
   },
+
   authLabel: {
     fontSize: 26,
     fontFamily: "DMSans-Regular",
@@ -63,6 +64,21 @@ export const Typographies = {
   tabBarText: {
     fontSize: 14,
     fontFamily: "DMSans-Bold",
+  },
+  recycleCard: {
+    fontSize: 42,
+    lineHeight: 54,
+    fontFamily: "DMSans-Bold",
+  },
+  challangeCardTitle: {
+    fontSize: 32,
+    lineHeight: 41,
+    fontFamily: "DMSans-Medium",
+  },
+  challangeCardSubTitle: {
+    fontSize: 20,
+    lineHeight: 26,
+    fontFamily: "DMSans-Regular",
   },
 };
 
