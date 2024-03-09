@@ -3,10 +3,8 @@ import { Text, View } from "react-native-ui-lib";
 import { useEffect, useState } from "react";
 import { KRecycledObject } from "../../components/KRecycledObject";
 import { Colors } from "../../constants/theme";
-import { TouchableOpacity, useWindowDimensions } from "react-native";
+import { useWindowDimensions } from "react-native";
 import KSpacer from "../../components/KSpacer";
-import { faArrowLeft } from "@fortawesome/free-solid-svg-icons/faArrowLeft";
-import { FontAwesomeIcon } from "@fortawesome/react-native-fontawesome";
 import { KBackButtonHeader } from "../../components/KBackButtonHeader";
 
 const AfterScanScreen = ({ navigation, route }) => {

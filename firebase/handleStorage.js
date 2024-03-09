@@ -3,6 +3,7 @@ import { ref as dbRef, get, child, set } from "firebase/database";
 import { auth, database, storage } from "./config";
 import * as ImageManipulator from "expo-image-manipulator";
 import { handleImageRecognition } from "../constants/helpers/handleImageRecognition";
+import { Alert } from "react-native";
 
 export const handleImageProcessing = async ({ uri }) => {
   let imageName = uri.split("/");
@@ -49,7 +50,36 @@ export const handleImageProcessing = async ({ uri }) => {
     aux["totalPoints"] += 1;
     aux[`${folderName}Objects`] += 1;
 
-    console.log(userGet);
+    if (aux["plasticObjects"] >= 1 && !aux["rewardsIDs"].includes(0)) {
+      aux["rewardsIDs"].push(0);
+      Alert.alert("Congrats! New award received! 🥳", "Bottoms up!");
+    }
+    if (aux["paperObjects"] >= 1 && !aux["rewardsIDs"].includes(2)) {
+      aux["rewardsIDs"].push(2);
+      Alert.alert("Congrats! New award received! 🥳", "Rock paper and PAPER!");
+    }
+    if (aux["aluminumObjects"] >= 1 && !aux["rewardsIDs"].includes(1)) {
+      aux["rewardsIDs"].push(1);
+      Alert.alert("Congrats! New award received! 🥳", "Aluminium starter!");
+    }
+    if (
+      aux["aluminumObjects"] >= 1 &&
+      aux["paperObjects"] >= 1 &&
+      aux["plasticObjects"] >= 1 &&
+      !aux["rewardsIDs"].includes(3)
+    ) {
+      aux["rewardsIDs"].push(3);
+      Alert.alert("Congrats! New award received! 🥳", "The recycler!");
+    }
+    if (
+      aux["aluminumObjects"] >= 5 &&
+      aux["paperObjects"] >= 5 &&
+      aux["plasticObjects"] >= 5 &&
+      !aux["rewardsIDs"].includes(4)
+    ) {
+      aux["rewardsIDs"].push(4);
+      Alert.alert("Congrats! New award received! 🥳", "That’s a collection.");
+    }
 
     const userUpdate = dbRef(database, `users/${auth.currentUser.uid}`);
     set(userUpdate, aux).then(() => console.log("Update with success"));
