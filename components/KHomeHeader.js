@@ -8,20 +8,22 @@ import {
 import { Colors } from "../constants/theme";
 import { TouchableOpacity } from "react-native";
 
-export const KHomeHeader = ({ onShop, onStats, onLeaderBoard }) => {
+export const KHomeHeader = ({ navigation }) => {
   return (
     <View right row gap-20 paddingH-20>
-      <TouchableOpacity onPress={onShop}>
+      <TouchableOpacity
+        onPress={() => navigation.navigate("LeaderBoardScreen")}
+      >
         <FontAwesomeIcon icon={faChess} size={30} color={Colors.tundora} />
       </TouchableOpacity>
-      <TouchableOpacity onPress={onStats}>
+      <TouchableOpacity onPress={() => navigation.navigate("StatsScreen")}>
         <FontAwesomeIcon
           icon={faChartSimple}
           size={30}
           color={Colors.tundora}
         />
       </TouchableOpacity>
-      <TouchableOpacity onPress={onLeaderBoard}>
+      <TouchableOpacity onPress={() => navigation.navigate("ShopScreen")}>
         <FontAwesomeIcon
           icon={faCartShopping}
           size={30}
