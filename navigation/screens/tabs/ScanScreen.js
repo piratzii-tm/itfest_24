@@ -68,6 +68,7 @@ const ScanScreen = ({ navigation }) => {
         }}
       >
         <TouchableOpacity
+          disabled={isProcessing}
           onPress={onPressScan}
           style={{
             padding: 10,
