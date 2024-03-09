@@ -60,6 +60,7 @@ export const KLeaderBoard = ({ leaderBoard }) => {
             </Text>
           </View>
           <Text
+            underline={element.uid === currentUser}
             logoutText
             style={[
               element.index === 1

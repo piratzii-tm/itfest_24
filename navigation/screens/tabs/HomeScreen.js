@@ -13,6 +13,7 @@ import { awards } from "../../../data/awards";
 import { KAchivements } from "../../../components/KAchivements";
 import { KCollectionDisplay } from "../../../components/KCollectionDisplay";
 import { KHomeHeader } from "../../../components/KHomeHeader";
+import { getLeaderboard } from "../../../firebase/getLeaderboard";
 const HomeScreen = ({ navigation }) => {
   const {
     isActiveChallenge,
@@ -26,13 +27,15 @@ const HomeScreen = ({ navigation }) => {
   const [userData, setUserData] = useState({});
 
   useEffect(() => {
-    const userRef = ref(database, "users/" + auth.currentUser.uid);
-    onValue(userRef, (snapshot) => {
-      if (snapshot.exists()) {
-        setUserData(snapshot.val());
-      }
-    });
-  }, []);
+    if (auth.currentUser) {
+      const userRef = ref(database, "users/" + auth.currentUser.uid);
+      onValue(userRef, (snapshot) => {
+        if (snapshot.exists()) {
+          setUserData(snapshot.val());
+        }
+      });
+    }
+  }, [auth.currentUser]);
 
   useEffect(() => {
     const intervalId = setInterval(() => {
