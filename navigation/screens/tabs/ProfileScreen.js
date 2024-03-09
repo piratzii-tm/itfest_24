@@ -59,6 +59,7 @@ const ProfileScreen = () => {
           <View row style={{ flexWrap: "wrap" }} center gap-10>
             {awards.map((award) => (
               <KAchivements
+                key={award.title}
                 price={award.coins}
                 photoRequire={award.photo}
                 title={award.title}
@@ -82,9 +83,9 @@ const ProfileScreen = () => {
           <View row center gap-10>
             <KStats
               type={1}
-              coins={userData.totalPoints - userData.achivementPoints}
+              coins={userData.totalPoints - userData.achievementPoints}
             />
-            <KStats coins={userData.achivementPoints} />
+            <KStats coins={userData.achievementPoints} />
           </View>
           <KSpacer height={80} />
           <TouchableOpacity

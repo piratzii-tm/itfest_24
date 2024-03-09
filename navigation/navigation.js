@@ -17,6 +17,7 @@ import { faCamera } from "@fortawesome/free-solid-svg-icons/faCamera";
 import { faCircleUser } from "@fortawesome/free-solid-svg-icons/faCircleUser";
 import { FontAwesomeIcon } from "@fortawesome/react-native-fontawesome";
 import { Text } from "react-native-ui-lib";
+import BeforeStartingChallangeScreen from "./screens/BeforeStartingChallangeScreen";
 
 const Stack = createNativeStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -101,6 +102,10 @@ const AppStack = () => {
       <Stack.Screen name={"Tabs"} component={Tabs} />
       <Stack.Screen name={"Collections"} component={CollectionsScreen} />
       <Stack.Screen name={"AfterScan"} component={AfterScanScreen} />
+      <Stack.Screen
+        name={"BeforeStarting"}
+        component={BeforeStartingChallangeScreen}
+      />
     </Stack.Navigator>
   );
 };

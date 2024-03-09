@@ -10,7 +10,7 @@ export const handleCreateUser = ({ username, mail }) => {
     plasticObjects: 0,
     paperObjects: 0,
     aluminumObjects: 0,
-    achivementPoints: 0,
+    achievementPoints: 0,
     rewardsIDs: [-1],
   };
 

@@ -1,16 +1,18 @@
 import KContainer from "../../components/KContainer";
 import { Text, View } from "react-native-ui-lib";
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { KRecycledObject } from "../../components/KRecycledObject";
 import { Colors } from "../../constants/theme";
 import { useWindowDimensions } from "react-native";
 import KSpacer from "../../components/KSpacer";
 import { KBackButtonHeader } from "../../components/KBackButtonHeader";
+import { TimerContext } from "../../constants/contexts/timerContext";
 
 const AfterScanScreen = ({ navigation, route }) => {
   const [isRecycable, setIsRecycable] = useState(false);
   const [objectType, setObjectType] = useState("trash");
   const { width: windowWidth, height: windowHeight } = useWindowDimensions();
+  const { isTimerActive, scans, setScans } = useContext(TimerContext);
 
   useEffect(() => {
     const response = route.params.response.split(" ");
@@ -22,6 +24,9 @@ const AfterScanScreen = ({ navigation, route }) => {
           !response[0].toLowerCase().includes("no")))
     ) {
       setIsRecycable(true);
+      if (isTimerActive) {
+        setScans((prev) => prev + 1);
+      }
     }
     if (response[1] !== undefined) {
       setObjectType(response[1].toLowerCase());
