@@ -25,7 +25,7 @@ const BeforeStartingChallangeScreen = ({ navigation, route }) => {
   useEffect(() => {
     setChallange(route.params.challange);
     console.log((Date.now() - startTimeStamp) / 1000);
-    if ((Date.now() - startTimeStamp) / 1000 >= duration || scans >= 3) {
+    if ((Date.now() - startTimeStamp) / 1000 >= duration) {
       setIsActiveChallenge(false);
       setFinishedScans(scans);
       if (scans >= route.params.challange.minimumScans) {

@@ -26,10 +26,8 @@ const HomeScreen = ({ navigation }) => {
   }, []);
 
   useEffect(() => {
-    setIsActiveChallenge(
-      (currentTime - startTimeStamp) / 1000 < duration && scans < 3,
-    );
-  }, [startTimeStamp, duration, scans, currentTime]);
+    setIsActiveChallenge((currentTime - startTimeStamp) / 1000 < duration);
+  }, [startTimeStamp, duration, currentTime]);
 
   return (
     <KContainer type={1}>
