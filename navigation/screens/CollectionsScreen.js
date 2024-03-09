@@ -19,14 +19,16 @@ const CollectionsScreen = ({ navigation, route }) => {
       if (snapshot.exists()) {
         let aux = snapshot.val();
         aux["images"][`${types}`].map((imageName) => {
-          let strgRef = storageRef(
-            storage,
-            `users/${auth.currentUser.uid}/${types}/${imageName}`,
-          );
-          getDownloadURL(strgRef).then((response) => {
-            console.log(response);
-            setImages((prev) => [...prev, response]);
-          });
+          if (imageName !== "IGNORE") {
+            let strgRef = storageRef(
+              storage,
+              `users/${auth.currentUser.uid}/${types}/${imageName}`,
+            );
+            getDownloadURL(strgRef).then((response) => {
+              console.log(response);
+              setImages((prev) => [...prev, response]);
+            });
+          }
         });
       }
     });

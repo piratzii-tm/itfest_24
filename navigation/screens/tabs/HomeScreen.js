@@ -26,14 +26,12 @@ const HomeScreen = ({ navigation }) => {
   const [userData, setUserData] = useState({});
 
   useEffect(() => {
-    if (auth.currentUser) {
-      const userRef = ref(database, "users/" + auth.currentUser.uid);
-      onValue(userRef, (snapshot) => {
-        if (snapshot.exists()) {
-          setUserData(snapshot.val());
-        }
-      });
-    }
+    const userRef = ref(database, "users/" + auth.currentUser.uid);
+    onValue(userRef, (snapshot) => {
+      if (snapshot.exists()) {
+        setUserData(snapshot.val());
+      }
+    });
   }, []);
 
   useEffect(() => {
