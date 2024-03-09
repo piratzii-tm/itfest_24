@@ -26,7 +26,7 @@ export const handleImageProcessing = async ({ uri }) => {
   );
 
   if (
-    response.toLowerCase().length >= 3 &&
+    !response.toLowerCase().includes("no") &&
     (response.toLowerCase().includes("yes") ||
       (response.toLowerCase().includes("recyclable") &&
         !response.toLowerCase().includes("non")))

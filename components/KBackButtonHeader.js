@@ -6,7 +6,12 @@ import { faArrowLeft } from "@fortawesome/free-solid-svg-icons";
 export const KBackButtonHeader = ({ onPress }) => {
   return (
     <TouchableOpacity onPress={onPress}>
-      <FontAwesomeIcon icon={faArrowLeft} size={25} color={Colors.tundora} />
+      <FontAwesomeIcon
+        icon={faArrowLeft}
+        size={25}
+        color={Colors.saltpan}
+        style={{ paddingHorizontal: 40 }}
+      />
     </TouchableOpacity>
   );
 };

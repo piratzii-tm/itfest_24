@@ -18,12 +18,16 @@ export const KRecycledObject = ({
       style={{ borderRadius: 40 }}
       bg-saltpan
     >
-      <Image height={270} borderRadius={40} source={{ uri: photoUri }} />
+      <Image
+        height={270}
+        borderRadius={40}
+        source={{ uri: photoUri }}
+        resizeMethod={"scale"}
+      />
 
       {text ? (
         <View center>
           <Text recycleCard tundora>
-            {" "}
             Less{" "}
             <Text recycleCard color={color}>
               {text}

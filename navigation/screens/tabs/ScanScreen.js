@@ -27,13 +27,16 @@ const ScanScreen = ({ navigation }) => {
   }
 
   const onPressScan = async () => {
-    cameraRef.takePictureAsync().then((response) => {
-      setIsProcessing(true);
-      handleImageProcessing({ uri: response.uri }).then((response) => {
-        setIsProcessing(false);
-        navigation.navigate("AfterScan", { response: response });
+    if (!isProcessing) {
+      cameraRef.takePictureAsync().then((response) => {
+        setIsProcessing(true);
+        const URL = response.uri;
+        handleImageProcessing({ uri: URL }).then((response) => {
+          setIsProcessing(false);
+          navigation.navigate("AfterScan", { response: response, uri: URL });
+        });
       });
-    });
+    }
   };
 
   return (
@@ -68,7 +71,6 @@ const ScanScreen = ({ navigation }) => {
         }}
       >
         <TouchableOpacity
-          disabled={isProcessing}
           onPress={onPressScan}
           style={{
             padding: 10,

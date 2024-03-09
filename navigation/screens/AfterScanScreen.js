@@ -1,30 +1,79 @@
 import KContainer from "../../components/KContainer";
-import { Text } from "react-native-ui-lib";
+import { Text, View } from "react-native-ui-lib";
 import { useEffect, useState } from "react";
+import { KRecycledObject } from "../../components/KRecycledObject";
+import { Colors } from "../../constants/theme";
+import { TouchableOpacity, useWindowDimensions } from "react-native";
+import KSpacer from "../../components/KSpacer";
+import { faArrowLeft } from "@fortawesome/free-solid-svg-icons/faArrowLeft";
+import { FontAwesomeIcon } from "@fortawesome/react-native-fontawesome";
+import { KBackButtonHeader } from "../../components/KBackButtonHeader";
 
 const AfterScanScreen = ({ navigation, route }) => {
   const [isRecycable, setIsRecycable] = useState(false);
-  const [objectType, setObjectType] = useState("");
+  const [objectType, setObjectType] = useState("trash");
+  const { width: windowWidth, height: windowHeight } = useWindowDimensions();
 
   useEffect(() => {
     const response = route.params.response.split(" ");
     console.log(response);
     if (
       response[0].toLowerCase().length >= 3 &&
-      (response[0].toLowerCase() === "yes" ||
-        response[0].toLowerCase() === "recyclable" ||
-        response[0].toLowerCase().contains("yes") ||
-        response[0].toLowerCase().contains("recyclable"))
+      (response[0].toLowerCase().includes("yes") ||
+        (response[0].toLowerCase().includes("recyclable") &&
+          !response[0].toLowerCase().includes("no")))
     ) {
       setIsRecycable(true);
     }
-    setObjectType(response[1].toLowerCase());
+    if (response[1] !== undefined) {
+      setObjectType(response[1].toLowerCase());
+    }
   }, []);
 
   return (
     <KContainer type={2}>
-      {isRecycable ? <Text>Recycable</Text> : <Text>Nope</Text>}
-      <Text>{objectType}</Text>
+      <KBackButtonHeader onPress={() => navigation.pop()} />
+      {isRecycable ? (
+        <>
+          <KSpacer height={60} />
+
+          <View left paddingH-40>
+            <Text recycleCard white>
+              Toss a coin to your recycler.
+            </Text>
+          </View>
+          <KSpacer height={20} />
+          <View paddingH-40 center>
+            <KRecycledObject
+              coins={1}
+              photoUri={route.params.uri}
+              text={objectType}
+              color={
+                objectType === "plastic"
+                  ? Colors.royalBlue
+                  : objectType === "paper"
+                    ? Colors.goldenrod
+                    : Colors.sushi
+              }
+            />
+          </View>
+        </>
+      ) : (
+        <View paddingH-40 center>
+          <KSpacer height={100} />
+          <Text recycleCard saltpan>
+            You wizard, that is not recyclable! 😮
+          </Text>
+          <KSpacer />
+          <Text
+            subTitle
+            saltpan
+            style={{ fontFamily: "DMSans-Medium", fontSize: 16 }}
+          >
+            Or maybe it is, you are the wizard, we are on beta.
+          </Text>
+        </View>
+      )}
     </KContainer>
   );
 };

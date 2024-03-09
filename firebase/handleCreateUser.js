@@ -9,9 +9,9 @@ export const handleCreateUser = ({ username, mail }) => {
     totalPoints: 0,
     plasticObjects: 0,
     paperObjects: 0,
-    aluminiumObjects: 0,
+    aluminumObjects: 0,
     achivementPoints: 0,
-    rewardsIDs: [],
+    rewardsIDs: [-1],
   };
 
   const usersRef = ref(database, "users/" + auth.currentUser.uid);
