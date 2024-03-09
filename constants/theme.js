@@ -60,6 +60,10 @@ export const Typographies = {
     fontSize: 26,
     fontFamily: "DMSans-Regular",
   },
+  tabBarText: {
+    fontSize: 14,
+    fontFamily: "DMSans-Bold",
+  },
 };
 
 export const configTheme = () => {

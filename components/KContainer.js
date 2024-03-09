@@ -8,6 +8,7 @@ import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { Colors } from "../constants/theme";
 import { LinearGradient } from "expo-linear-gradient";
 import { StyleSheet, ImageBackground } from "react-native";
+import KSpacer from "./KSpacer";
 
 const KContainer = ({ children, type = 0, isScrollable = true }) => {
   const insets = useSafeAreaInsets();

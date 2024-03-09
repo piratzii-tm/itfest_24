@@ -11,16 +11,86 @@ import { useEffect, useState } from "react";
 import { onAuthStateChanged } from "firebase/auth";
 import { auth } from "../firebase/config";
 import AfterScanScreen from "./screens/AfterScanScreen";
+import { Colors } from "../constants/theme";
+import { faHouse } from "@fortawesome/free-solid-svg-icons/faHouse";
+import { faCamera } from "@fortawesome/free-solid-svg-icons/faCamera";
+import { faCircleUser } from "@fortawesome/free-solid-svg-icons/faCircleUser";
+import { FontAwesomeIcon } from "@fortawesome/react-native-fontawesome";
+import { Text } from "react-native-ui-lib";
 
 const Stack = createNativeStackNavigator();
 const Tab = createBottomTabNavigator();
 
 const Tabs = () => {
   return (
-    <Tab.Navigator screenOptions={{ headerShown: false }}>
-      <Tab.Screen name={"Home"} component={HomeScreen} />
-      <Tab.Screen name={"Scan"} component={ScanScreen} />
-      <Tab.Screen name={"Profile"} component={ProfileScreen} />
+    <Tab.Navigator
+      screenOptions={{
+        headerShown: false,
+        tabBarStyle: {
+          borderRadius: 32,
+          backgroundColor: Colors.blackHaze,
+          height: 95,
+          shadowColor: "black",
+          shadowRadius: 2,
+          shadowOpacity: 0.3,
+          position: "absolute",
+        },
+      }}
+    >
+      <Tab.Screen
+        name={"Home"}
+        component={HomeScreen}
+        options={{
+          tabBarIcon: ({ focused }) => (
+            <FontAwesomeIcon
+              size={30}
+              icon={faHouse}
+              color={focused ? Colors.olivine : Colors.alto}
+            />
+          ),
+          tabBarLabel: ({ focused }) => (
+            <Text tabBarText alto olivine={focused}>
+              Home
+            </Text>
+          ),
+        }}
+      />
+      <Tab.Screen
+        name={"Scan"}
+        component={ScanScreen}
+        options={{
+          tabBarIcon: ({ focused }) => (
+            <FontAwesomeIcon
+              icon={faCamera}
+              size={30}
+              color={focused ? Colors.tundora : Colors.alto}
+            />
+          ),
+          tabBarLabel: ({ focused }) => (
+            <Text tabBarText alto tundora={focused}>
+              Camera
+            </Text>
+          ),
+        }}
+      />
+      <Tab.Screen
+        name={"Profile"}
+        component={ProfileScreen}
+        options={{
+          tabBarIcon: ({ focused }) => (
+            <FontAwesomeIcon
+              icon={faCircleUser}
+              size={30}
+              color={focused ? Colors.olivine : Colors.alto}
+            />
+          ),
+          tabBarLabel: ({ focused }) => (
+            <Text tabBarText alto olivine={focused}>
+              Profile
+            </Text>
+          ),
+        }}
+      />
     </Tab.Navigator>
   );
 };
