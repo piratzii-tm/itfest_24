@@ -7,12 +7,24 @@ import { useWindowDimensions } from "react-native";
 import KSpacer from "../../components/KSpacer";
 import { KBackButtonHeader } from "../../components/KBackButtonHeader";
 import { TimerContext } from "../../constants/contexts/timerContext";
+import { onValue, ref } from "firebase/database";
+import { auth, database } from "../../firebase/config";
 
 const AfterScanScreen = ({ navigation, route }) => {
   const [isRecycable, setIsRecycable] = useState(false);
   const [objectType, setObjectType] = useState("trash");
   const { width: windowWidth, height: windowHeight } = useWindowDimensions();
   const { isActiveChallenge, setScans } = useContext(TimerContext);
+  const [userData, setUserData] = useState({});
+
+  useEffect(() => {
+    const userRef = ref(database, "users/" + auth.currentUser.uid);
+    onValue(userRef, (snapshot) => {
+      if (snapshot.exists()) {
+        setUserData(snapshot.val());
+      }
+    });
+  }, []);
 
   useEffect(() => {
     const response = route.params.response.split(" ");
@@ -48,7 +60,7 @@ const AfterScanScreen = ({ navigation, route }) => {
           <KSpacer height={20} />
           <View paddingH-40 center>
             <KRecycledObject
-              coins={1}
+              coins={1 * userData["multiplier"]}
               photoUri={route.params.uri}
               text={objectType}
               color={
