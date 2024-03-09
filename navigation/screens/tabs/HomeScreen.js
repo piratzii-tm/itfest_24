@@ -8,7 +8,7 @@ import { TimerContext } from "../../../constants/contexts/timerContext";
 import { challanges } from "../../../data/challanges";
 import { onValue, ref } from "firebase/database";
 import { auth, database } from "../../../firebase/config";
-import { ScrollView } from "react-native";
+import { Button, ScrollView } from "react-native";
 import { awards } from "../../../data/awards";
 import { KAchivements } from "../../../components/KAchivements";
 import { KCollectionDisplay } from "../../../components/KCollectionDisplay";
@@ -52,7 +52,8 @@ const HomeScreen = ({ navigation }) => {
   return (
     <KContainer type={1}>
       <View style={{ paddingBottom: 120 }}>
-        <View>
+        <Button title={"Shop"} onPress={() => navigation.navigate("Shop")} />
+        <View paddingH-30>
           <KHeading
             title={"Awards."}
             subTitle={"Your achievements as recycler."}

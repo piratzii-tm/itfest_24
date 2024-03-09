@@ -10,6 +10,7 @@ export const updateAwardsPoints = async ({ points }) => {
 
   aux["achievementPoints"] += points;
   aux["totalPoints"] += points;
+  aux["purchasablePoint"] += points;
 
   const userUpdate = ref(database, `users/${auth.currentUser.uid}`);
   set(userUpdate, aux).then(() => console.log("Update with success"));

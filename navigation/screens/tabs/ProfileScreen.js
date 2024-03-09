@@ -38,7 +38,7 @@ const ProfileScreen = () => {
             </Text>
             <KSpacer height={30} />
             <Text title webOrange style={{ fontSize: 82, lineHeight: 85 }}>
-              {userData.totalPoints}
+              {userData.purchasablePoint}
             </Text>
             <Image
               style={{ marginTop: -15 }}

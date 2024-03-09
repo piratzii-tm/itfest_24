@@ -7,6 +7,8 @@ export const handleCreateUser = ({ username, mail }) => {
     username,
     id: auth.currentUser.uid,
     totalPoints: 0,
+    purchasablePoint: 0,
+    multiplier: 1,
     plasticObjects: 0,
     paperObjects: 0,
     aluminiumObjects: 0,
