@@ -31,11 +31,11 @@ const KContainer = ({ children, type = 0, isScrollable = true }) => {
                 source={require("../assets/images/image1.png")}
               >
                 <LinearGradient
-                  colors={[Colors.codGray, Colors.transparent]}
+                  colors={[Colors.codGray, Colors.white]}
                   style={[
                     StyleSheet.absoluteFill,
                     {
-                      opacity: 0.5,
+                      opacity: 0.4,
                       borderRadius: 8,
                     },
                   ]}

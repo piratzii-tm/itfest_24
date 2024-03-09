@@ -1,19 +1,111 @@
-import { View, Text } from "react-native-ui-lib";
+import { View, Text, Image } from "react-native-ui-lib";
 import KContainer from "../../../components/KContainer";
-import { TouchableOpacity } from "react-native";
-import { auth } from "../../../firebase/config";
+import { TouchableOpacity, useWindowDimensions } from "react-native";
+import { auth, database } from "../../../firebase/config";
 import { signOut } from "firebase/auth";
+import { useEffect, useState } from "react";
+import { ref, onValue } from "firebase/database";
+import KSpacer from "../../../components/KSpacer";
+import { KHeading } from "../../../components/KHeading";
+import { awards } from "../../../data/awards";
+import { KAchivements } from "../../../components/KAchivements";
+import { faRightFromBracket } from "@fortawesome/free-solid-svg-icons/faRightFromBracket";
+import { FontAwesomeIcon } from "@fortawesome/react-native-fontawesome";
+import { Colors } from "../../../constants/theme";
+import { KStats } from "../../../components/KStats";
 
 const ProfileScreen = () => {
+  const [userData, setUserData] = useState({});
+  const { width: windowWidth } = useWindowDimensions();
+
+  useEffect(() => {
+    const userRef = ref(database, "users/" + auth.currentUser.uid);
+    onValue(userRef, (snapshot) => {
+      if (snapshot.exists()) {
+        setUserData(snapshot.val());
+      }
+    });
+  }, []);
+
   return (
     <KContainer type={1}>
-      <TouchableOpacity
-        onPress={() => {
-          signOut(auth).catch((err) => console.log(err));
-        }}
-      >
-        <Text>Log out</Text>
-      </TouchableOpacity>
+      {userData.rewardsIDs !== undefined && (
+        <View flex style={{ paddingBottom: 120 }}>
+          <View width={windowWidth} center>
+            <KSpacer height={80} />
+            <Text title style={{ fontSize: 64, lineHeight: 70 }} tundora>
+              {userData.username}
+            </Text>
+            <KSpacer height={30} />
+            <Text title webOrange style={{ fontSize: 82, lineHeight: 85 }}>
+              {userData.totalPoints}
+            </Text>
+            <Image
+              style={{ marginTop: -15 }}
+              height={64}
+              width={64}
+              source={require("../.././../assets/images/coins.png")}
+            />
+          </View>
+          <KSpacer height={30} />
+          <View paddingL-30>
+            <KHeading
+              title={"Awards"}
+              subTitle={"All the awards available and collected."}
+            />
+          </View>
+          <KSpacer />
+
+          <View row style={{ flexWrap: "wrap" }} center gap-10>
+            {awards.map((award) => (
+              <KAchivements
+                price={award.coins}
+                photoRequire={award.photo}
+                title={award.title}
+                subTitle={award.description}
+                type={
+                  userData.rewardsIDs.includes(awards.indexOf(award))
+                    ? "small"
+                    : "locked"
+                }
+              />
+            ))}
+          </View>
+          <KSpacer height={30} />
+          <View paddingL-30>
+            <KHeading
+              title={"Stats"}
+              subTitle={"Statistics about your activity on the app"}
+            />
+          </View>
+          <KSpacer />
+          <View row center gap-10>
+            <KStats
+              type={1}
+              coins={userData.totalPoints - userData.achivementPoints}
+            />
+            <KStats coins={userData.achivementPoints} />
+          </View>
+          <KSpacer height={80} />
+          <TouchableOpacity
+            onPress={() => {
+              signOut(auth).catch((err) => console.log(err));
+            }}
+          >
+            <View row center gap-5>
+              <Text logoutText tundora>
+                Logout
+              </Text>
+              <FontAwesomeIcon
+                icon={faRightFromBracket}
+                size={20}
+                color={Colors.tundora}
+              />
+            </View>
+          </TouchableOpacity>
+          <KSpacer height={80} />
+        </View>
+      )}
     </KContainer>
   );
 };
