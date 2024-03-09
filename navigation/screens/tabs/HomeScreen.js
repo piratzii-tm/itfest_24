@@ -1,4 +1,4 @@
-import { Text, View } from "react-native-ui-lib";
+import { View } from "react-native-ui-lib";
 import KContainer from "../../../components/KContainer";
 import { KHeading } from "../../../components/KHeading";
 import { KChallange } from "../../../components/KChallange";
@@ -8,10 +8,11 @@ import { TimerContext } from "../../../constants/contexts/timerContext";
 import { challanges } from "../../../data/challanges";
 import { onValue, ref } from "firebase/database";
 import { auth, database } from "../../../firebase/config";
-import { Button, ScrollView } from "react-native";
+import { ScrollView } from "react-native";
 import { awards } from "../../../data/awards";
 import { KAchivements } from "../../../components/KAchivements";
 import { KCollectionDisplay } from "../../../components/KCollectionDisplay";
+import { KHomeHeader } from "../../../components/KHomeHeader";
 const HomeScreen = ({ navigation }) => {
   const {
     isActiveChallenge,
@@ -51,8 +52,8 @@ const HomeScreen = ({ navigation }) => {
 
   return (
     <KContainer type={1}>
+      <KHomeHeader navigation={navigation} />
       <View style={{ paddingBottom: 120 }}>
-        <Button title={"Shop"} onPress={() => navigation.navigate("Shop")} />
         <View paddingH-30>
           <KHeading
             title={"Awards."}
@@ -112,27 +113,27 @@ const HomeScreen = ({ navigation }) => {
           <KCollectionDisplay
             key={1}
             count={userData["plasticObjects"]}
-            onPress={() => {
-              //TODO handle navgation
-            }}
+            onPress={() =>
+              navigation.navigate("Collections", { type: "plastic" })
+            }
           />
           <View width={10}></View>
           <KCollectionDisplay
             key={2}
             type={"paper"}
             count={userData["paperObjects"]}
-            onPress={() => {
-              //TODO handle navgation
-            }}
+            onPress={() =>
+              navigation.navigate("Collections", { type: "paper" })
+            }
           />
           <View width={10}></View>
           <KCollectionDisplay
             key={3}
             type={"can"}
             count={userData["aluminiumObjects"]}
-            onPress={() => {
-              //TODO handle navgation
-            }}
+            onPress={() =>
+              navigation.navigate("Collections", { type: "aluminium" })
+            }
           />
         </ScrollView>
       </View>

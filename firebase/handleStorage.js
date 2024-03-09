@@ -47,6 +47,8 @@ export const handleImageProcessing = async ({ uri }) => {
 
     let aux = userGet.val();
 
+    aux["images"][`${folderName}`].push(imageName);
+
     aux["totalPoints"] += 1 * aux["multiplier"];
     aux["purchasablePoint"] += 1 * aux["multiplier"];
     aux[`${folderName}Objects`] += 1;

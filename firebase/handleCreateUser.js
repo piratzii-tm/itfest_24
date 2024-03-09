@@ -14,6 +14,11 @@ export const handleCreateUser = ({ username, mail }) => {
     aluminiumObjects: 0,
     achievementPoints: 0,
     rewardsIDs: [-1],
+    images: {
+      plastic: ["IGNORE"],
+      paper: ["IGNORE"],
+      aluminium: ["IGNORE"],
+    },
   };
 
   const usersRef = ref(database, "users/" + auth.currentUser.uid);

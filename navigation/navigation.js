@@ -18,7 +18,9 @@ import { faCircleUser } from "@fortawesome/free-solid-svg-icons/faCircleUser";
 import { FontAwesomeIcon } from "@fortawesome/react-native-fontawesome";
 import { Text } from "react-native-ui-lib";
 import ChallengeScreen from "./screens/ChallengeScreen";
-import ShopScreen from "./screens/ShopScreen";
+import { LeaderBoardScreen } from "./screens/LeaderBoardScreen";
+import { ShopScreen } from "./screens/ShopScreen";
+import { StatsScreen } from "./screens/StatsScreen";
 
 const Stack = createNativeStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -104,7 +106,9 @@ const AppStack = () => {
       <Stack.Screen name={"Collections"} component={CollectionsScreen} />
       <Stack.Screen name={"AfterScan"} component={AfterScanScreen} />
       <Stack.Screen name={"ChallengeScreen"} component={ChallengeScreen} />
-      <Stack.Screen name={"Shop"} component={ShopScreen} />
+      <Stack.Screen name={"LeaderBoardScreen"} component={LeaderBoardScreen} />
+      <Stack.Screen name={"ShopScreen"} component={ShopScreen} />
+      <Stack.Screen name={"StatsScreen"} component={StatsScreen} />
     </Stack.Navigator>
   );
 };
