@@ -1,9 +1,12 @@
 import { View, Text } from "react-native-ui-lib";
 import { useState } from "react";
 import { Camera, CameraType } from "expo-camera";
-import { Button, TouchableOpacity, useWindowDimensions } from "react-native";
+import { Button, useWindowDimensions, TouchableOpacity } from "react-native";
 import { handleImageProcessing } from "../../../firebase/handleStorage";
 import { Colors } from "../../../constants/theme";
+import KSpacer from "../../../components/KSpacer";
+import { faRecycle } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-native-fontawesome";
 
 const ScanScreen = ({ navigation }) => {
   const [permission, requestPermission] = Camera.useCameraPermissions();
@@ -17,11 +20,28 @@ const ScanScreen = ({ navigation }) => {
 
   if (!permission.granted) {
     return (
-      <View style={{ flex: 1, justifyContent: "center" }}>
-        <Text style={{ textAlign: "center" }}>
-          We need your permission to show the camera
+      <View padding-20 style={{ flex: 1, justifyContent: "center" }}>
+        <Text challangeCardSubTitle tundora style={{ textAlign: "center" }}>
+          Ready to <Text sushi>recycle</Text> with a splash of fun? Just need
+          your <Text royalBlue>permission </Text> for camera{" "}
+          <Text webOrange>magic</Text>!
         </Text>
-        <Button onPress={requestPermission} title="grant permission" />
+        <KSpacer height={80} />
+        <TouchableOpacity
+          style={{
+            height: 50,
+            width: 100,
+            alignSelf: "center",
+            justifyContent: "center",
+            alignItems: "center",
+          }}
+          onPress={requestPermission}
+        >
+          <FontAwesomeIcon icon={faRecycle} size={100} color={Colors.sushi} />
+          <Text collectionSubTitle tundora>
+            PRESS ME
+          </Text>
+        </TouchableOpacity>
       </View>
     );
   }
