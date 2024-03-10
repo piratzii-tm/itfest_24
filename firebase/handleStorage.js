@@ -33,7 +33,8 @@ export const handleImageProcessing = async ({ uri }) => {
         !response.toLowerCase().includes("non")))
   ) {
     const responseList = response.split(" ");
-    const folderName = responseList[1].toLowerCase();
+    let folderName = responseList[1].toLowerCase();
+    folderName = folderName === "aluminum" ? "aluminium" : folderName;
     const userImagesRef = ref(
       storage,
       `users/${auth.currentUser.uid}/${folderName}/${imageName}`,

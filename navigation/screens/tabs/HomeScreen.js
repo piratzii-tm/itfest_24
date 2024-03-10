@@ -15,6 +15,8 @@ import { KCollectionDisplay } from "../../../components/KCollectionDisplay";
 import { KHomeHeader } from "../../../components/KHomeHeader";
 import { getLeaderboard } from "../../../firebase/getLeaderboard";
 import { onShare } from "../../../constants/helpers/share";
+import WebView from "react-native-webview";
+import { Colors } from "../../../constants/theme";
 const HomeScreen = ({ navigation }) => {
   const {
     isActiveChallenge,
@@ -26,7 +28,6 @@ const HomeScreen = ({ navigation }) => {
 
   const [currentTime, setCurrentTime] = useState(Date.now());
   const [userData, setUserData] = useState({});
-
   useEffect(() => {
     if (auth.currentUser) {
       const userRef = ref(database, "users/" + auth.currentUser.uid);
