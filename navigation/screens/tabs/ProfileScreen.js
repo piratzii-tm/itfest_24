@@ -58,8 +58,9 @@ const ProfileScreen = () => {
           <KSpacer />
 
           <View row style={{ flexWrap: "wrap" }} center gap-10>
-            {awards.map((award) => (
+            {awards.map((award, index) => (
               <TouchableOpacity
+                key={index}
                 disabled={!userData.rewardsIDs.includes(awards.indexOf(award))}
                 onLongPress={() =>
                   onShare({

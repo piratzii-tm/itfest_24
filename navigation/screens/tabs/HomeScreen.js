@@ -70,26 +70,23 @@ const HomeScreen = ({ navigation }) => {
             userData.rewardsIDs.map(
               (id) =>
                 id !== -1 && (
-                  <>
-                    <View width={5}></View>
-                    <TouchableOpacity
-                      onLongPress={() =>
-                        onShare({
-                          rewardTitle: awards[id].title,
-                          rewardDescription: awards[id].description,
-                        })
-                      }
-                    >
-                      <KAchivements
-                        key={id}
-                        photoRequire={awards[id].photo}
-                        title={awards[id].title}
-                        subTitle={awards[id].description}
-                        type={"large"}
-                      />
-                    </TouchableOpacity>
-                    <View width={5}></View>
-                  </>
+                  <TouchableOpacity
+                    key={id}
+                    style={{ paddingHorizontal: 5 }}
+                    onLongPress={() =>
+                      onShare({
+                        rewardTitle: awards[id].title,
+                        rewardDescription: awards[id].description,
+                      })
+                    }
+                  >
+                    <KAchivements
+                      photoRequire={awards[id].photo}
+                      title={awards[id].title}
+                      subTitle={awards[id].description}
+                      type={"large"}
+                    />
+                  </TouchableOpacity>
                 ),
             )}
         </ScrollView>
