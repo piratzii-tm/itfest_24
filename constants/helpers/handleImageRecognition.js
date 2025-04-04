@@ -1,12 +1,12 @@
 import OpenAI from "openai";
-import OpenAIConstants from "../OpenAIConstants";
+import { openaiKey } from "../env";
 
 const openai = new OpenAI({
-  apiKey: `${OpenAIConstants.apiKey1}${OpenAIConstants.apiKey2}${OpenAIConstants.apiKey3}${OpenAIConstants.apiKey4}`,
+  apiKey: openaiKey,
 });
 export const handleImageRecognition = async ({ url }) => {
   const response = await openai.chat.completions.create({
-    model: "gpt-4-vision-preview",
+    model: "gpt-4o",
     messages: [
       {
         role: "user",
