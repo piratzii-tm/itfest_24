@@ -1,9 +1,8 @@
 import WithExpoFonts from "./wrappers/WithExpoFonts";
 import Navigation from "./navigation/navigation";
 import { configTheme } from "./constants/theme";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { TimerContext } from "./constants/contexts/timerContext";
-import { challanges } from "./data/challanges";
 
 configTheme();
 

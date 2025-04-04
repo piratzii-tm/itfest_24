@@ -1,7 +1,7 @@
 import { View, Text } from "react-native-ui-lib";
-import { useState } from "react";
-import { Camera, CameraType } from "expo-camera";
-import { Button, useWindowDimensions, TouchableOpacity } from "react-native";
+import { useState, useRef } from "react";
+import { CameraView, useCameraPermissions } from "expo-camera";
+import { useWindowDimensions, TouchableOpacity } from "react-native";
 import { handleImageProcessing } from "../../../firebase/handleStorage";
 import { Colors } from "../../../constants/theme";
 import KSpacer from "../../../components/KSpacer";
@@ -9,8 +9,8 @@ import { faRecycle } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-native-fontawesome";
 
 const ScanScreen = ({ navigation }) => {
-  const [permission, requestPermission] = Camera.useCameraPermissions();
-  const [cameraRef, setCameraRef] = useState(null);
+  const [permission, requestPermission] = useCameraPermissions();
+  const cameraRef = useRef(null);
   const [isProcessing, setIsProcessing] = useState(false);
   const { width: windowWidth, height: windowHeight } = useWindowDimensions();
 
@@ -47,32 +47,35 @@ const ScanScreen = ({ navigation }) => {
   }
 
   const onPressScan = async () => {
-    if (!isProcessing) {
-      cameraRef.takePictureAsync().then((response) => {
-        setIsProcessing(true);
+    if (!isProcessing && cameraRef.current) {
+      setIsProcessing(true);
+      try {
+        const response = await cameraRef.current.takePictureAsync();
         const URL = response.uri;
-        handleImageProcessing({ uri: URL }).then((response) => {
-          setIsProcessing(false);
-          navigation.navigate("AfterScan", { response: response, uri: URL });
+        const processedResponse = await handleImageProcessing({ uri: URL });
+        navigation.navigate("AfterScan", {
+          response: processedResponse,
+          uri: URL,
         });
-      });
+      } catch (error) {
+        console.error("Error taking picture:", error);
+      } finally {
+        setIsProcessing(false);
+      }
     }
   };
 
   return (
-    <Camera
+    <CameraView
       style={{ flex: 1, justifyContent: "center", paddingBottom: 95 }}
-      type={CameraType.back}
-      ref={(ref) => setCameraRef(ref)}
+      ref={cameraRef}
     >
       {isProcessing && (
         <View
           abs
           flex
           backgroundColor={Colors.codGray}
-          style={{
-            opacity: 0.8,
-          }}
+          style={{ opacity: 0.8 }}
           height={windowHeight}
           width={windowWidth}
           center
@@ -112,10 +115,11 @@ const ScanScreen = ({ navigation }) => {
               borderColor: Colors.codGray,
               borderWidth: 2,
             }}
-          ></View>
+          />
         </TouchableOpacity>
       </View>
-    </Camera>
+    </CameraView>
   );
 };
+
 export default ScanScreen;
